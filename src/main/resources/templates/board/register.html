@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>게시글 등록</h1>
+
+<form action="/board/register" method="post">
+
+    <div class="input-group mb-3">
+        <span class="input-group-text">Title</span>
+        <input type="text" name="title" class="form-control" placeholder="Title">
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text">Content</span>
+        <textarea class="form-control col-sm-5" rows="5" name="content"></textarea>
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text">Writer</span>
+        <input type="text" name="writer" class="form-control" placeholder="Writer">
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text">Images</span>
+        <div class="float-end uploadHidden">
+            <button type="button" class="btn btn-primary uploadFileBtn">ADD Files</button>
+        </div>
+    </div>
+
+    <div class="my-4">
+        <div class="float-end">
+            <a th:href="@{/board/list}" class="text-decoration-none">
+                <button type="button" class="btn btn-primary">List</button>
+            </a>
+            <button type="submit" class="btn btn-primary submitBtn">Submit</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>
