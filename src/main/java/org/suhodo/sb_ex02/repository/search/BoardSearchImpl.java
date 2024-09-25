@@ -157,14 +157,12 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
 
         JPQLQuery<Tuple> tupleJPQLQuery = boardJPQLQuery.select(board, reply.countDistinct());
 
-
-        // sql문 실행
         List<Tuple> tupleList = tupleJPQLQuery.fetch();
 
         List<BoardListAllDTO> dtoList = tupleList.stream().map(tuple -> {
 
-            Board board1 = (Board) tuple.get(board);             // Tuple의 인덱스 0요소(1번째 요소, 생략됨) 꺼내기
-            long replyCount = tuple.get(1, Long.class);       // Tuple의 인덱스 1요소(2번째 요소) 꺼내기
+            Board board1 = (Board) tuple.get(board);
+            long replyCount = tuple.get(1, Long.class);
 
             BoardListAllDTO dto = BoardListAllDTO.builder()
                     .bno(board1.getBno())
@@ -174,7 +172,6 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
                     .replyCount(replyCount)
                     .build();
 
-            // BoardImage를 조회해서 dto에 추가
             List<BoardImageDTO> imageDTOS = board1.getImageSet().stream().sorted()
                     .map(boardImage -> BoardImageDTO.builder()
                             .uuid(boardImage.getUuid())
