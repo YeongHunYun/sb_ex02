@@ -17,7 +17,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@Log4j2
 @RequiredArgsConstructor
 @Transactional
 public class BoardServiceImpl implements BoardService {
@@ -41,12 +40,8 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public BoardDTO readOne(Long bno) {
         Optional<Board> result = boardRepository.findById(bno);
-
         Board board = result.orElseThrow();
-
-//        BoardDTO boardDTO = modelMapper.map(board, BoardDTO.class);
         BoardDTO boardDTO = entityToDto(board);
-
         return boardDTO;
     }
 
